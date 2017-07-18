@@ -1,7 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import styled from 'styled-components'
-import {Icon} from 'antd'
+import {Icon,Input,Button} from 'antd'
 import {FreePane,SearchBox,ActionTag,Dialog,ContextMenu,Menu,MenuItem,Flow} from 'ev-ui'
 import Login from './Login'
 const Root=styled.div`
@@ -116,7 +116,21 @@ export default class Demo extends React.Component{
     }
 
     onCreate(){
-
+        let props={
+            content:ProcessCreate,
+            onConfirm:process=>{
+                this.setState({
+                    processes:[
+                        ...this.state.processes,
+                        {
+                            ...process,
+                            id:this.state.processes.length
+                        }
+                    ]
+                })
+            }
+        }
+        Dialog.show(props)
     }
     onTasksChange(tasks){
         this.setState({
@@ -181,10 +195,59 @@ export default class Demo extends React.Component{
                     <div className="main">
                         <Flow tasks={this.state.tasks} 
                             onChange={this.onTasksChange.bind(this)}
+                            onFlowCreate={this.onCreate.bind(this)}
                             selectedProcess={this.state.selectedProcess || {}}/>
                     </div>
                 </div>
             </Root>
         )
     }    
+}
+const DialogRoot=styled.div`
+    .ant-input{
+        background:transparent;
+    }
+`;
+
+class ProcessCreate extends React.Component{
+
+    state={
+        name:'',
+        desc:'',
+        tasks:[]
+    }
+
+    onCancel(){
+        const onClose=this.props.onClose
+        onClose ?onClose() :''
+    }
+    onSubmit(){
+        const {onConfirm}=this.props
+        onConfirm ?onConfirm(this.state) :''
+        this.onCancel()
+    }
+
+    render(){
+        return(
+            <DialogRoot style={{display:'flex',flexDirection:'column',width:'100%',justifyContent:'space-between'}}>
+                <header className="header" style={{textAlign:'center',fontSize:18}}>新建流程</header>
+                <div className="content" style={{display:'flex',flexDirection:'column'}}>
+                    <div className="items" style={{display:'flex',width:'80%',flexDirection:'row',alignItems:'center',padding:10}}>
+                        <span className="label" style={{flexShrink:0}}>名称</span>
+                        <Input className="input" value={this.state.name}
+                            onChange={e=>this.setState({name:e.target.value})}/>
+                    </div>
+                    <div className="items" style={{width:'80%',display:'flex',flexDirection:'row'}}>
+                        <span className="label" style={{flexShrink:0}}>描述</span>
+                        <Input className="input" type='textarea' rows={4} value={this.state.desc}
+                            onChange={e=>this.setState({desc:e.target.value})}/>
+                    </div>
+                </div>
+                <div className="footer" style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                    <Button type='danger' onClick={this.onCancel.bind(this)} style={{margin:10}}>取消</Button>
+                    <Button type='primary' onClick={this.onSubmit.bind(this)} style={{margin:10}}>创建</Button>
+                </div>
+            </DialogRoot>
+        )
+    }
 }

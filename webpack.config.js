@@ -76,29 +76,29 @@ module.exports={
             filename:'index.html'
 		}),
 
-		// // 生产环境打包
-		// new webpack.DefinePlugin({
-		// 	"process.env":{
-		// 		NODE_ENV:JSON.stringify('production')
-		// 	}
-		// }),
-		// // 去掉注释，忽略警告
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	comments:false,
-		// 	compress:{
-		// 		warnings:false
-		// 	}
-		// }),
-		// new CompressionWebpackPlugin({ //gzip 压缩
-		// 	asset: '[path].gz[query]',
-		// 	algorithm: 'gzip',
-		// 	test: new RegExp(
-		// 		'\\.(js|css)$'    //压缩 js 与 css
-		// 	),
-		// 	threshold: 10240,
-		// 	minRatio: 0.8
-		// }),
-		// //css单独打包
-		// new ExtractTextPlugin("[name].[contenthash].css")
+		// 生产环境打包
+		new webpack.DefinePlugin({
+			"process.env":{
+				NODE_ENV:JSON.stringify('production')
+			}
+		}),
+		// 去掉注释，忽略警告
+		new webpack.optimize.UglifyJsPlugin({
+			comments:false,
+			compress:{
+				warnings:false
+			}
+		}),
+		new CompressionWebpackPlugin({ //gzip 压缩
+			asset: '[path].gz[query]',
+			algorithm: 'gzip',
+			test: new RegExp(
+				'\\.(js|css)$'    //压缩 js 与 css
+			),
+			threshold: 10240,
+			minRatio: 0.8
+		}),
+		//css单独打包
+		new ExtractTextPlugin("[name].[contenthash].css")
 	]
 }
