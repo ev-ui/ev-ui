@@ -4,8 +4,8 @@ Some Components are available now as below.
 [Home](https://ev-ui.github.io "ev-ui")
 
 ### preview  
-![Home](https://github.com/evolify/ev-ui/raw/dev/res/1.jpg)  
-![Demo](https://github.com/evolify/ev-ui/raw/dev/res/2.jpg)  
+![Home](https://github.com/ev-ui/ev-ui/raw/dev/res/1.jpg)  
+![Demo](https://github.com/ev-ui/ev-ui/raw/dev/res/2.jpg)  
 
 ### install
 `npm install --save ev-ui`
@@ -29,7 +29,7 @@ import {EvUI} from 'ev-ui'
 1. `Dialog`:  
 * usage  
 ```js
-import {Dialog} from 'ev-ui
+import {Dialog} from 'ev-ui'
 const props={
     content':Comp, //Component or string ,required
     mainBlur:false,// the background where filter blur if true,or else the background of the dialog it self will blur.
@@ -39,8 +39,8 @@ const props={
 Dialog.show(props)
 ```
 * screenshot  
-![login](https://github.com/evolify/ev-ui/raw/dev/res/6.jpg)  
-![create](https://github.com/evolify/ev-ui/raw/dev/res/7.jpg)  
+![login](https://github.com/ev-ui/ev-ui/raw/dev/res/6.jpg)  
+![create](https://github.com/ev-ui/ev-ui/raw/dev/res/7.jpg)  
 
 2. `ContextMenu`:  
 * usage
@@ -84,7 +84,7 @@ export default class Demo extends React.Component{
 }
 ```  
 * screenshot  
-![ContextMenu](https://github.com/evolify/ev-ui/raw/dev/res/3.jpg)  
+![ContextMenu](https://github.com/ev-ui/ev-ui/raw/dev/res/3.jpg)  
 
 3. `Confirm`:  
 
@@ -99,7 +99,7 @@ Confirm.show(()=>{
 })
 ```  
 * screenshot
-![Confirm](https://github.com/evolify/ev-ui/raw/dev/res/8.jpg)  
+![Confirm](https://github.com/ev-ui/ev-ui/raw/dev/res/8.jpg)  
 
 4. `ActionTag`:  
 * usage
@@ -135,7 +135,7 @@ Confirm.show(()=>{
     }
 ```  
 * screenshot  
-![ActionTag](https://github.com/evolify/ev-ui/raw/dev/res/5.jpg)  
+![ActionTag](https://github.com/ev-ui/ev-ui/raw/dev/res/5.jpg)  
 
 5. `Flow`:  
 * usage  
@@ -196,6 +196,6 @@ export default class Process extends React.Component{
 }
 ```  
 * screenshot  
-![Flow](https://github.com/evolify/ev-ui/raw/dev/res/4.jpg)   
+![Flow](https://github.com/ev-ui/ev-ui/raw/dev/res/4.jpg)   
 
 The document will be added later.
