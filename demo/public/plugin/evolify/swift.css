@@ -1,0 +1,41 @@
+.ev-swift-in{
+    animation: swift-in .5s;
+}
+.ev-swift-out{
+    animation: swift-out .5s ease-out
+}
+@keyframes ev-swift-in{
+    0%{
+        transform: scale(0) translate(-50%,-50%);
+        left: 100%;
+        top: -300px;
+    }
+    80%{
+        transform: scale(1.2) translate(-50%,-50%);
+        left: 50%;
+        top: 50%;
+    }
+    100%{
+        transform: scale(1) translate(-50%,-50%);
+        left: 50%;
+        top: 50%;
+    }
+}
+@keyframes ev-swift-out{
+    0%{
+        
+    }
+    30%{
+        transform: scale(1) translate(-50%,-50%);
+        border-radius: 50%;
+        width: 300px;
+        left: 10%;
+        top: 80%;
+        opacity: 1;
+    }
+    100%{
+        transform: scale(6) translate(0,0);
+        border-radius: 50%;
+        opacity: 0.1;
+    }
+}
