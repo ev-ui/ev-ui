@@ -224,11 +224,13 @@ export default class Process extends React.Component{
     onTaskCreated(task){
         task.point=this.state.tasks.length+1
         const pt=this.state.tasks.find(t=>t.point===this.state.selectedPoint)
+        let tasks=[...this.state.tasks.filter(t=>t.point!==this.state.selectedPoint),task]
         if(pt){
             task.parent.push(pt.point)
+            tasks.push({...pt,children:[...pt.children,task.point]})
         }
 
-        this.mapData([...this.state.tasks.filter(t=>t.point!==this.state.selectedPoint),{...pt,children:[...pt.children,task.point]},task])
+        this.mapData(tasks)
         this.setState({
             editing:true
         })
@@ -527,7 +529,7 @@ export default class Process extends React.Component{
                     </div>
                     <span className="title">模板详情</span>
                     <div className="btn-bar">
-                        <ActionTag iconField={<Icon type="plus" />} textField='新建' onClick={this.props.createProcess}/>
+                        <ActionTag iconField={<Icon type="plus" />} textField='新建' onClick={this.props.onFlowCreate...pt.children,task.point}/>
                         <ActionTag iconField={<Icon type="edit" />} textField='编辑' onClick={this.setState.bind(this,{editing:true},null)}/>
                         <ActionTag iconField={<Icon type="delete" />} textField='删除' type='danger'
                             onClick={this.onRemove.bind(this)}/>
