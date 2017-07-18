@@ -31,7 +31,7 @@ import {EvUI} from 'ev-ui'
 ```js
 import {Dialog} from 'ev-ui'
 const props={
-    content':Comp, //Component or string ,required
+    content:Comp, //Component or string ,required
     mainBlur:false,// the background where filter blur if true,or else the background of the dialog it self will blur.
     onConfirm:()=>{},//function ,can be called when you click the confirm button,can be empty
     onCancel:()=>{} //function ,called when you click the cancel button can be empty
