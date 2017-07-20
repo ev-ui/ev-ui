@@ -3,7 +3,6 @@ import {render} from 'react-dom'
 import styled from 'styled-components'
 
 const Root=styled.span`
-    margin-right:5px;
     align-self:center;
     padding:5px 0;
     color:#0099ff;
