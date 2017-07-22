@@ -3,19 +3,19 @@ import {render} from 'react-dom'
 import styled from 'styled-components'
 
 const Root=styled.div`
-    box-shadow:0 1px 5px gray;
-    background-color:#f0f0f0;
-    .header{
-        width:100%;
+    box-shadow:0 1px 10px -3px gray;
+    display:flex;
+    flex-direction:column;
+    &:hover{
+        box-shadow:0 0px 20px -3px gray;
+    }
+    .card-title{
+        background:#f0f0f0;
         padding:5px 10px;
         font-size:16px;
-        display:flex;
-        justify-content:center;
         text-align:center;
-        box-shadow:0 1px 2px -1px gray;
-        background:#fff;
     }
-    &>.content{
+    .card-content{
         padding:10px 20px;
     }
 `;
