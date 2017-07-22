@@ -1,12 +1,13 @@
 {
   "name": "ev-ui",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "An ui library,some awesome components.",
   "main": "lib/index.js",
   "scripts": {
       "dev": "webpack-dev-server",
       "build": "webpack",
-      "compile":"babel src -d lib"
+      "compile":"babel src -d lib",
+      "pub":"npm run compile && npm publish"
     },
   "repository": {
     "type": "git",

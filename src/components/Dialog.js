@@ -221,7 +221,11 @@ class Dialog extends React.Component{
         this.onChange()
     },
     hide(id){
-        this.dialogs=this.dialogs.filter(dialog=>dialog.id!==id)
+        if(id){
+            this.dialogs=this.dialogs.filter(dialog=>dialog.id!==id)
+        }else{
+            this.dialogs.pop()
+        }
         this.onChange()
     }
  }
