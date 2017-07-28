@@ -178,7 +178,6 @@ const ConfirmOpt={
         this.observer=observer
     },
     show(onConfirm,onCancel){
-        console.log(onConfirm,onCancel)
         this.view=<Confirm onConfirm={onConfirm} onCancel={onCancel}/>
         this.onChange()
     },

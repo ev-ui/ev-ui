@@ -152,18 +152,18 @@ class Dialog extends React.Component{
         })
      }
 
-     componentWillReceiveProps(nextProps){
-        //  if(this.state.visible!=nextProps.visible){
-        //      this.setState({visible:nextProps.visible})
-        //  }
-     }
-
      onClose(){
          this.setState({visible:false})
      }
 
      render(){
-         const {content,mainBlur,bgBlur,onConfirm,onCancel}=this.props
+        const {content,bgBlur}=this.props
+        const contentProps={
+             ...this.props,
+             content:null,
+             mainBlur:null,
+             bgBlur:null
+        }
          const {visible,bgUrl,bgPositionX,bgPositionY,bgWidth,bgHeight,bgLeft,bgTop}=this.state
          return(
              <Root innerRef={root=>this.Root=root} 
@@ -183,7 +183,7 @@ class Dialog extends React.Component{
                             这也是为什么React组件要求第一个字母大写的原因。
                          */
                         content?
-                            typeof content==='function'?<this.props.content onConfirm={onConfirm} onCancel={onCancel} onClose={this.onClose.bind(this)}/>
+                            typeof content==='function'?<this.props.content {...contentProps} onClose={this.onClose.bind(this)}/>
                             :typeof content==='string'?content:''
                         :''
                     }
@@ -209,10 +209,9 @@ class Dialog extends React.Component{
     },
     show(props){
         let dialog=<Dialog dkey={this.dialogs.length} key={this.dialogs.length}
+            {...props}
             content={props.content || props}
-            bgBlur={props.bgBlur || !props.mainBlur}
-            onConfirm={props.onConfirm}
-            onCancel={props.onCancel}/>
+            bgBlur={props.bgBlur || !props.mainBlur}/>
         this.dialogs.push({
             id:this.dialogs.length,
             dialog,

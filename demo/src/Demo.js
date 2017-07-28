@@ -102,6 +102,106 @@ const data=[
             {point:3,name:'Task3',parent:[1],children:[]},
         ]
     },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
+    {
+        id:'3',
+        name:'Flow3',
+        tasks:[
+            {point:0,name:'Task0',parent:[],children:[1]},
+            {point:1,name:'Task1',parent:[0],children:[2,3]},
+            {point:2,name:'Task2',parent:[1],children:[]},
+            {point:3,name:'Task3',parent:[1],children:[]},
+        ]
+    },  
 ]
 export default class Demo extends React.Component{
 
@@ -161,6 +261,14 @@ export default class Demo extends React.Component{
             .add(new MenuItem('剪切',()=>{}))
             .add(new MenuItem('粘贴',()=>{}))
             .add(new MenuItem('删除',()=>{}).type('remove'))
+            .add(new MenuItem('编辑',()=>{}))
+            .add(new MenuItem('复制',()=>{}))
+            .add(new MenuItem('剪切',()=>{}))
+            .add(new MenuItem('粘贴',()=>{}))
+            .add(new MenuItem('编辑',()=>{}))
+            .add(new MenuItem('复制',()=>{}))
+            .add(new MenuItem('剪切',()=>{}))
+            .add(new MenuItem('粘贴',()=>{}))
             
         ContextMenu.show({menu,left:e.pageX,top:e.pageY})
     }
