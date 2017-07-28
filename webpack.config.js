@@ -50,7 +50,7 @@ module.exports={
 	},
 	resolve:{
 		alias:{
-			'ev-ui':__dirname,
+			'ev-ui':path.join(__dirname,'src'),
 			__src:path.join(__dirname,'demo','src'),
 			__public:path.join(__dirname,'demo','public'),
 			__res:path.join(__dirname,'demo','res'),
@@ -61,7 +61,8 @@ module.exports={
         contentBase:APP_PATH,
 		port:7777,
         inline:true,
-        open:true,
+		open:true,
+		openPage:'',
 		proxy:{
 			"/api/*":{
 				target:"http://localhost:9999/",
@@ -76,29 +77,29 @@ module.exports={
             filename:'index.html'
 		}),
 
-		// 生产环境打包
-		new webpack.DefinePlugin({
-			"process.env":{
-				NODE_ENV:JSON.stringify('production')
-			}
-		}),
-		// 去掉注释，忽略警告
-		new webpack.optimize.UglifyJsPlugin({
-			comments:false,
-			compress:{
-				warnings:false
-			}
-		}),
-		new CompressionWebpackPlugin({ //gzip 压缩
-			asset: '[path].gz[query]',
-			algorithm: 'gzip',
-			test: new RegExp(
-				'\\.(js|css)$'    //压缩 js 与 css
-			),
-			threshold: 10240,
-			minRatio: 0.8
-		}),
-		//css单独打包
-		new ExtractTextPlugin("[name].[contenthash].css")
+		// // 生产环境打包
+		// new webpack.DefinePlugin({
+		// 	"process.env":{
+		// 		NODE_ENV:JSON.stringify('production')
+		// 	}
+		// }),
+		// // 去掉注释，忽略警告
+		// new webpack.optimize.UglifyJsPlugin({
+		// 	comments:false,
+		// 	compress:{
+		// 		warnings:false
+		// 	}
+		// }),
+		// new CompressionWebpackPlugin({ //gzip 压缩
+		// 	asset: '[path].gz[query]',
+		// 	algorithm: 'gzip',
+		// 	test: new RegExp(
+		// 		'\\.(js|css)$'    //压缩 js 与 css
+		// 	),
+		// 	threshold: 10240,
+		// 	minRatio: 0.8
+		// }),
+		// //css单独打包
+		// new ExtractTextPlugin("[name].[contenthash].css")
 	]
 }

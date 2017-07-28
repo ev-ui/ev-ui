@@ -36,7 +36,7 @@ const Root=styled.div`
         display:inherit;
         position:absolute;
         left:0;
-        top:-3px;
+        top:${props=>props.triggerTop-3+'px'};
         width:0;
         height:0;
         border-right:10px solid rgba(255,255,255,.95);
@@ -110,6 +110,13 @@ const Root=styled.div`
 
 class ContextMenu extends React.Component{
 
+    constructor(props){
+        super(props)
+        this.state={
+            top:props.top
+        }
+    }
+
     onClick(menuItem){
         if(menuItem.type!=='disabled'){
             menuItem.action?menuItem.action():'';
@@ -125,7 +132,13 @@ class ContextMenu extends React.Component{
         },499)
     }
     componentDidMount(){
+        const Root=this.Root
         this.Root.focus()
+        if(Root.offsetTop+Root.offsetHeight>window.innerHeight){
+            this.setState({
+                top:window.innerHeight-Root.offsetHeight-10
+            })
+        }
     }
 
     mapPropsToMenu(menu,sub){
@@ -147,8 +160,10 @@ class ContextMenu extends React.Component{
 
     render(){
         let menu = this.props.menu||[];
+        const triggerTop=this.props.top-this.state.top
         return(
-            <Root id='root' className={'swift-in'} style={{left:this.props.left+'px',top:this.props.top+'px'}}
+            <Root id='root' className={'swift-in'} style={{left:this.props.left+'px',top:this.state.top+'px'}}
+                triggerTop={triggerTop}
                 tabIndex='-1'
                 innerRef={root=>{this.Root=root}}
                 onBlur={this.onBlur.bind(this)} >
