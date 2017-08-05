@@ -48,45 +48,51 @@ const swiftOut=keyframes`
     }
 `;
 const Root=styled.div`
-    min-width:500px;
-    min-height:100px
-    overflow:hidden;
     position:fixed;
-    left:${props=>props.winWidth/2+'px'};
-    top:${props=>props.winHeight/2+'px'};
-    transform: scale(1) translate(-50%,-50%);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, .9);
-    box-shadow: 10px 10px 80px -10px rgba(30, 30, 30, .7);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    left:0;
+    top:0;
     z-index:1000;
-    &.swift-in{
-        animation:${swiftIn} .5s ease-out forwards;
-    }
-    &.swift-out{
-        animation:${swiftOut} .5s ease-out;
-    }
-    .btn-close{
-        position:absolute;
-        top:5px;
-        right:5px;
-        background:transparent;
-        width:20px;
-        height:20px;
-        line-height:20px;
-        border:none;
-        outline:none;
-        font-size:20px;
-        border-radius:5px;
-    }
-    .btn-close:hover{
-        color:red;
-    }
-    .content{
+    background:rgba(200,200,200,.3);
+    &>.dialog-root{
+        min-width:500px;
+        min-height:100px
+        overflow:hidden;
+        position:fixed;
+        left:${props=>props.winWidth/2+'px'};
+        top:${props=>props.winHeight/2+'px'};
+        transform: scale(1) translate(-50%,-50%);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, .9);
+        box-shadow: 10px 10px 80px -10px rgba(30, 30, 30, .7);
+        display:flex;
+        flex-direction:column;
         align-items:center;
-        justify-content:center;
+        &.swift-in{
+            animation:${swiftIn} .5s ease-out forwards;
+        }
+        &.swift-out{
+            animation:${swiftOut} .5s ease-out;
+        }
+        .btn-close{
+            position:absolute;
+            top:5px;
+            right:5px;
+            background:transparent;
+            width:20px;
+            height:20px;
+            line-height:20px;
+            border:none;
+            outline:none;
+            font-size:20px;
+            border-radius:5px;
+        }
+        .btn-close:hover{
+            color:red;
+        }
+        .dialog-content{
+            align-items:center;
+            justify-content:center;
+        }
     }
 `;
 const BgLayer=styled.div`
@@ -166,27 +172,28 @@ class Dialog extends React.Component{
         }
          const {visible,bgUrl,bgPositionX,bgPositionY,bgWidth,bgHeight,bgLeft,bgTop}=this.state
          return(
-             <Root innerRef={root=>this.Root=root} 
+             <Root className='dialog-wrapper'
                 winWidth={this.state.winWidth} winHeight={this.state.winHeight}
-                className={"dialog-root"+(visible?' swift-in':' swift-out')} 
+                style={{display:visible?'inherit':'',width:this.state.winWidth,height:this.state.winHeight}}>
+                <div ref={root=>this.Root=root} className={"dialog-root"+(visible?' swift-in':' swift-out')} 
                 style={{display:visible?'inherit':''}}>
-                <div ref={ct=>this.content=ct} className="content" style={{display:this.state.visible?'flex':'none',width:'100%',flexGrow:1}}>
-                    {bgBlur?
-                        <BgLayer innerRef={bgLayer=>this.bgLayer=bgLayer} style={{display:visible?'none':'none'}} bgUrl={bgUrl} bgPositionX={bgPositionX} bgPositionY={bgPositionY} 
-                            bgWidth={bgWidth} bgHeight={bgHeight}
-                            bgLeft={bgLeft} bgTop={bgTop}/>
-                        :''
-                    }
-                    <button className="btn-close" onClick={this.onClose.bind(this)}>&times;</button>
-                    {
-                        /** 此处标签里面直接用content有问题，因为JSX会直接解析为<content/>标签而不是对应的组件,
-                            这也是为什么React组件要求第一个字母大写的原因。
-                         */
-                        content?
-                            typeof content==='function'?<this.props.content {...contentProps} onClose={this.onClose.bind(this)}/>
-                            :typeof content==='string'?content:''
-                        :''
-                    }
+                    <div ref={ct=>this.content=ct} 
+                        className="dialog-content" 
+                        style={{display:visible?'flex':'none',width:'100%',flexGrow:1}}>
+                        {bgBlur?
+                            <BgLayer innerRef={bgLayer=>this.bgLayer=bgLayer} style={{display:visible?'none':'none'}} bgUrl={bgUrl} bgPositionX={bgPositionX} bgPositionY={bgPositionY} 
+                                bgWidth={bgWidth} bgHeight={bgHeight}
+                                bgLeft={bgLeft} bgTop={bgTop}/>
+                            :''
+                        }
+                        <button className="btn-close" onClick={this.onClose.bind(this)}>&times;</button>
+                        {
+                            content?
+                                typeof content==='function'?<this.props.content {...contentProps} onClose={this.onClose.bind(this)}/>
+                                :typeof content==='string'?content:''
+                            :''
+                        }
+                    </div>
                 </div>
              </Root>
          )
