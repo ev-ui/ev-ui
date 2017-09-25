@@ -1,6 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import styled from 'styled-components'
+import {Drawer} from 'ev-ui'
 
 const Root=styled.div`
     background:#fff;
@@ -43,6 +44,25 @@ const Root=styled.div`
 const comps=['Dialog','ContextMenu','Confirm','ActionTag','FreePane','FloatActionButton','Flow','ListView','Ripple','SearchBox','Tree','Loading']
 export default class Introduction extends React.Component{
 
+    showDrawer(position){
+        const view=()=>(
+            <div>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+                <p>测试而已测试而已测试而已</p>
+            </div>
+        )
+        Drawer.show({content:view,position})
+    }
+
     render(){
         return(
             <Root {...this.props}>
@@ -54,6 +74,10 @@ export default class Introduction extends React.Component{
                             <div key={i} className="comp">{comp}</div>
                         ))
                     }
+                        <div className="comp" onClick={this.showDrawer.bind(this,'top')}>Drawer Top</div>
+                        <div className="comp" onClick={this.showDrawer.bind(this,'right')}>Drawer Right</div>
+                        <div className="comp" onClick={this.showDrawer.bind(this,'bottom')}>Drawer Bottom</div>
+                        <div className="comp" onClick={this.showDrawer.bind(this,'left')}>Drawer Left</div>
                     </div>
                     <span className='tips'>The details introduction will be added later...</span>
                 </div>

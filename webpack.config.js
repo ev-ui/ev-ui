@@ -59,7 +59,7 @@ module.exports={
 	},
 	devServer:{
         contentBase:APP_PATH,
-		port:7777,
+		port:6777,
         inline:true,
 		open:true,
 		openPage:'',
@@ -75,7 +75,10 @@ module.exports={
 		new HtmlWebpackPlugin({
 			template:__dirname+"/demo/index.html",
             filename:'index.html'
-		}),
+        }),
+        // new CopyWebpackPlugin([
+		// 	{from:path.resolve(SRC_PATH,'index.d.ts'),to:'index.d.ts'}
+		// ])
 
 		// // 生产环境打包
 		// new webpack.DefinePlugin({

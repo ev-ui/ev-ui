@@ -52,7 +52,7 @@ const Root=styled.div`
     left:0;
     top:0;
     z-index:1000;
-    background:rgba(200,200,200,.3);
+    background:rgba(0,0,0,.1);
     &>.dialog-root{
         min-width:500px;
         min-height:100px

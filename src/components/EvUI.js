@@ -3,13 +3,15 @@ import {render} from 'react-dom'
 import Dialog from './Dialog.js'
 import ContextMenu from './ContextMenu.js'
 import Confirm from './Confirm.js'
+import Drawer from './Drawer.js'
 
 export default class EvUI extends React.Component{
     state={
         mainBlur:false,
         dialogs:[],
         ctxMenu:null,
-        confirm:null
+        confirm:null,
+        drawer:null,
     }
     constructor(props){
         super(props);
@@ -17,7 +19,8 @@ export default class EvUI extends React.Component{
     componentDidMount(){
         Dialog.subscribe(this.onDialogChange.bind(this))
         ContextMenu.subscribe(this.onContextMenuChange.bind(this))
-        Confirm.subscribe(this.onConfirmChange.bind(this)) 
+        Confirm.subscribe(this.onConfirmChange.bind(this))
+        Drawer.subscribe(this.onDrawerChange.bind(this))
     }
     onDialogChange(){
         this.setState({
@@ -32,6 +35,11 @@ export default class EvUI extends React.Component{
         this.setState({
             confirm:Confirm.view,
             mainBlur:Confirm.view!==null
+        })
+    }
+    onDrawerChange(){
+        this.setState({
+            drawer:Drawer.view
         })
     }
 
@@ -49,6 +57,9 @@ export default class EvUI extends React.Component{
                 }
                 {
                     this.state.confirm ?Confirm.view :''
+                }
+                {
+                    this.state.drawer ?Drawer.view :''
                 }
             </div>
         )
