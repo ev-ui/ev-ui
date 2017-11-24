@@ -50,6 +50,9 @@ export default class EvUI extends React.Component{
                     {this.props.children}
                 </div>
                 {
+                    this.state.drawer ?Drawer.view :''
+                }
+                {
                     this.state.dialogs.map((d,i)=>d.dialog)
                 }
                 {
@@ -57,9 +60,6 @@ export default class EvUI extends React.Component{
                 }
                 {
                     this.state.confirm ?Confirm.view :''
-                }
-                {
-                    this.state.drawer ?Drawer.view :''
                 }
             </div>
         )

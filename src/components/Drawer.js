@@ -75,6 +75,7 @@ const Root = styled.div`
     bottom:0;
     z-index:1000;
     background:rgba(0,0,0,.3);
+    overflow:auto;
     .drawer-content{
         position:absolute;
         background:#fff;
@@ -130,6 +131,9 @@ class Drawer extends React.Component{
     }
 
     onOuterClick(){
+        if(this.props.modal){
+            return
+        }
         this.onClose()
     }
     
