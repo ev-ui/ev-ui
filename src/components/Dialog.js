@@ -52,7 +52,7 @@ const Root=styled.div`
     left:0;
     top:0;
     z-index:1000;
-    background:rgba(200,200,200,.3);
+    background:rgba(0,0,0,.1);
     &>.dialog-root{
         min-width:500px;
         min-height:100px
@@ -131,35 +131,37 @@ class Dialog extends React.Component{
              winHeight:window.innerHeight
          })
 
-        let root=this.Root;
-        root.style.display=this.state.visible?'inherit':'none';
+         this.renderBg()
+     }
 
-        root.addEventListener('animationend',()=>{
-            root.style.display=this.state.visible?'inherit':'none';
-            this.content.style.display=this.state.visible?'flex':'none';
-            this.bgLayer ?this.bgLayer.style.display=this.state.visible?'inherit':'none' :'' ;
-            if(this.state.visible){
-                const appRoot=document.querySelector('body>div#app>div>div#app-main');
-                DomToImage.toPng(appRoot,{quality:0.1})
-                    .then(url=>{
-                        this.setState({bgUrl:url})
-                    })
-                this.setState({
-                        bgWidth:appRoot.offsetWidth,
-                        bgHeight:appRoot.offsetHeight,
-                        bgLeft:this.Root.offsetLeft-this.Root.offsetWidth/2-appRoot.offsetLeft,
-                        bgTop:this.Root.offsetTop-this.Root.offsetHeight/2-appRoot.offsetTop,
-                        bgPositionX:0-this.Root.offsetLeft,
-                        bgPositionY:0-this.Root.offsetTop
-                    })
-            }else{
-                DialogOpt.hide(this.props.dkey)
-            }
-        })
+     renderBg(){
+        let root=this.Root
+        root.style.display='inherit'
+        setTimeout(()=>{
+            root.classList.remove('swift-in')
+            this.content.style.display='flex'
+            this.bgLayer && (this.bgLayer.style.display='inherit')
+            const appRoot=document.querySelector('body>div#app>div>div#app-main')
+            DomToImage.toPng(appRoot,{quality:0.1})
+                .then(url=>{
+                    this.setState({bgUrl:url})
+                })
+            this.setState({
+                    bgWidth:appRoot.offsetWidth,
+                    bgHeight:appRoot.offsetHeight,
+                    bgLeft:this.Root.offsetLeft-this.Root.offsetWidth/2-appRoot.offsetLeft,
+                    bgTop:this.Root.offsetTop-this.Root.offsetHeight/2-appRoot.offsetTop,
+                    bgPositionX:0-this.Root.offsetLeft,
+                    bgPositionY:0-this.Root.offsetTop
+                })
+        },500)
      }
 
      onClose(){
          this.setState({visible:false})
+         setTimeout(()=>{
+            DialogOpt.hide(this.props.dkey)
+         },500)
      }
 
      render(){
@@ -175,7 +177,8 @@ class Dialog extends React.Component{
              <Root className='dialog-wrapper'
                 winWidth={this.state.winWidth} winHeight={this.state.winHeight}
                 style={{display:visible?'inherit':'',width:this.state.winWidth,height:this.state.winHeight}}>
-                <div ref={root=>this.Root=root} className={"dialog-root"+(visible?' swift-in':' swift-out')} 
+                <div ref={root=>this.Root=root}
+                    className={"dialog-root"+(visible?' swift-in':' swift-out')} 
                 style={{display:visible?'inherit':''}}>
                     <div ref={ct=>this.content=ct} 
                         className="dialog-content" 

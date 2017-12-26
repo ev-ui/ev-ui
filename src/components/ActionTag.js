@@ -10,6 +10,11 @@ const Root=styled.span`
     border-radius:10px;
     min-width:60px;
     overflow:hidden;
+    display:flex;
+    &.disabled{
+        cursor:not-allowed;
+        color:gray;
+    }
     &.large{
         font-size:30px;
         min-width:100px;
@@ -25,6 +30,7 @@ const Root=styled.span`
     }
     &>.wrapper{
         display:flex;
+        width:100%;
     }
     & .icon{
         width:100%;
@@ -48,9 +54,17 @@ const Root=styled.span`
 `;
 export default class ActionTag extends React.Component{
 
+    onClick(){
+        const {disabled,onClick}=this.props
+        if(!disabled && onClick){
+            onClick()
+        }
+    }
+
     render(){
         return(
-            <Root {...this.props} className={this.props.type+' '+this.props.size}>
+            <Root {...this.props} className={this.props.type+' '+this.props.size+(this.props.disabled ?' disabled':'')}
+                onClick={this.onClick.bind(this)}>
                 <span className="wrapper">
                     <span className="icon">{this.props.iconField}</span>
                     <span className="text">{this.props.textField}</span>

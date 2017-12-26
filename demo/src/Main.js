@@ -2,6 +2,7 @@ import React from 'react'
 import {render} from 'react-dom'
 import {Icon} from 'antd'
 import styled from 'styled-components'
+import {Img} from 'ev-ui'
 
 const Root=styled.div`
     background:#fff;
@@ -41,6 +42,9 @@ const Root=styled.div`
             }
         }
     }
+    .ev-img{
+        border-radius:20px;
+    }
 `;
 
 export default class Main extends React.Component{
@@ -61,6 +65,7 @@ export default class Main extends React.Component{
                     <a href="https://github.com/ev-ui/ev-ui" target='_blank' className="btn-link"><Icon className='icon' type="github" />View on Github</a>
                     <a href="http://evolify.cn" className="btn-link" target='_blank'><Icon className='icon' type="user" />About me</a>
                 </div>
+                <Img className='ev-img' src={require('../res/image/1.jpg')} width={100} height={100}/>
             </Root>
         )
     }    
