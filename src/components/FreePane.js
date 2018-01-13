@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const Root=styled.div`
     position:relative;
     overflow:hidden;
+    width:auto;
     .trigger{
         width:5px;
         height:100%;
@@ -19,11 +20,9 @@ export default class FreePane extends React.Component{
 
     state={
         resizing:false,
-        width:200,
-        mx:0
+        width:0
     }
     mx=0
-    width=200
     resizing=false
     bg='white'
 
@@ -49,11 +48,14 @@ export default class FreePane extends React.Component{
     componentDidMount(){
         document.onmousemove=this.onResize.bind(this)
         document.onmouseup=this.onResizeEnd.bind(this)
+        this.root && this.setState({
+            width: this.root.offsetWidth
+        })
     }
     
     render(){
         return(
-            <Root {...this.props} style={{width:this.state.width}}>
+            <Root {...this.props} innerRef={root=>this.root=root} style={{width:this.state.width || 'auto'}}>
                 {this.props.children}
                 <span className="trigger"
                     onMouseDown={this.onResizeStart.bind(this)}/>
