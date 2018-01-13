@@ -1,16 +1,16 @@
 {
   "name": "ev-ui",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "An ui library,some awesome components.",
   "main": "lib/index.js",
-  "types":"lib/index.d.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
-      "dev": "webpack-dev-server",
-      "build": "webpack",
-      "compile":"babel src -d lib",
-      "pub":"npm run compile && npm publish",
-      "git-push":"git add . && git commit && git push"
-    },
+    "dev": "webpack-dev-server",
+    "build": "webpack",
+    "compile": "babel src -d lib",
+    "pub": "npm run compile && npm publish",
+    "git-push": "git add . && git commit && git push"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ev-ui/ev-ui.git"
@@ -49,10 +49,10 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
-    "antd": "^2.8.1",
+    "antd": "^2.13.11",
     "dom-to-image": "^2.5.2",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "styled-components": "^1.4.4"
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "styled-components": "^1.4.6"
   }
 }
