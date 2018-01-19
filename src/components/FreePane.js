@@ -29,6 +29,9 @@ export default class FreePane extends React.Component{
     onResizeStart(event){
         this.resizing=true
         this.mx=event.pageX || event.clientX
+        this.root && this.setState({
+            width: this.root.offsetWidth
+        })
     }
     onResize(event){
         const e=event || window.event
@@ -48,9 +51,6 @@ export default class FreePane extends React.Component{
     componentDidMount(){
         document.onmousemove=this.onResize.bind(this)
         document.onmouseup=this.onResizeEnd.bind(this)
-        this.root && this.setState({
-            width: this.root.offsetWidth
-        })
     }
     
     render(){
