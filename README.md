@@ -13,10 +13,9 @@ Some Components are available now as below.
 
 ### usage
 first include your code in the `EvUI` component
-```js
+```jsx
 import {EvUI} from 'ev-ui'
 
-...
     render(){
         return(
             <EvUI>
@@ -28,13 +27,19 @@ import {EvUI} from 'ev-ui'
 
 1. `Dialog`:  
 * usage  
+&emsp;just show the content:
+```jsx
+Dialog.show(Comp)
+```
+&emsp; or show comp with props:
 ```js
 import {Dialog} from 'ev-ui'
+import {Comp} from 'comp.js'
 const props={
     content:Comp, //Component or string ,required
-    mainBlur:false,// the background where filter blur if true,or else the background of the dialog it self will blur.
-    onConfirm:()=>{},//function ,can be called when you click the confirm button,can be empty
-    onCancel:()=>{} //function ,called when you click the cancel button can be empty
+    mainBlur:false,// the background where filter blur if 
+    k1:{}, // any other props
+    k2:{}
 }
 Dialog.show(props)
 ```
@@ -71,10 +76,11 @@ export default class Demo extends React.Component{
             .add(new MenuItem('编辑',()=>{}))
             .add(new MenuItem('复制',()=>{}))
             .add(new MenuItem('剪切',()=>{}))
+            // .add(new MenuItem('剪切',()=>{})).type('disabled') // the menuItem will be disabled(gray color and do nothing when clicked)
             .add(new MenuItem('粘贴',()=>{}))
             .add(new MenuItem('删除',()=>{}).type('remove'))
             
-        ContextMenu.show({menu,left:e.pageX,top:e.pageY})
+        menu.notEmpty() && ContextMenu.show({menu,left:e.pageX,top:e.pageY})
     }
     render(){
         return(
