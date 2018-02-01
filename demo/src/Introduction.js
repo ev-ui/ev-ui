@@ -65,7 +65,7 @@ export default class Introduction extends React.Component{
 
     showLoading(){
         Loading.show()
-        // setTimeout(()=>Loading.hide(),2000)
+        setTimeout(()=>Loading.hide(),2000)
     }
 
     render(){
