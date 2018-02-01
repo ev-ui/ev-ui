@@ -48,7 +48,7 @@ export default class EvUI extends React.Component{
     onLoadingChange(){
         this.setState({
             loading:Loading.view,
-            mainBlur:true
+            mainBlur:Loading.view !== null
         })
     }
 
