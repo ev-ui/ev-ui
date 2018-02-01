@@ -204,4 +204,15 @@ export default class Process extends React.Component{
 * screenshot  
 ![Flow](https://github.com/ev-ui/ev-ui/raw/dev/res/4.jpg)   
 
+6. `Loading`
+* usage  
+```js
+import {Loading} from 'ev-ui'
+
+// show Loading.
+Loading.show()
+// hide Loading
+Loading.hide()
+```
+
 The document will be added later.

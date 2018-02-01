@@ -16,10 +16,15 @@ declare module 'ev-ui'{
         left(content:any):void
         hide():void
     }
+    interface ILoading{
+        show():void
+        hide():void
+    }
     export class EvUI extends React.Component<any,any>{}
     export const Dialog:IDialog
     export const Confirm:IConfrim
     export const Drawer:IDrawer
+    export const Loading:ILoading
     export class ActionTag extends React.Component<any,any>{}
     export class Img extends React.Component<any,any>{}
     export class Card extends React.Component<any,any>{}
