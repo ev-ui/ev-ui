@@ -4,6 +4,7 @@ import Dialog from './Dialog.js'
 import ContextMenu from './ContextMenu.js'
 import Confirm from './Confirm.js'
 import Drawer from './Drawer.js'
+import Loading from './Loading.js'
 
 export default class EvUI extends React.Component{
     state={
@@ -12,6 +13,7 @@ export default class EvUI extends React.Component{
         ctxMenu:null,
         confirm:null,
         drawer:null,
+        loading:null,
     }
     constructor(props){
         super(props);
@@ -21,6 +23,7 @@ export default class EvUI extends React.Component{
         ContextMenu.subscribe(this.onContextMenuChange.bind(this))
         Confirm.subscribe(this.onConfirmChange.bind(this))
         Drawer.subscribe(this.onDrawerChange.bind(this))
+        Loading.subscribe(this.onLoadingChange.bind(this))
     }
     onDialogChange(){
         this.setState({
@@ -42,11 +45,17 @@ export default class EvUI extends React.Component{
             drawer:Drawer.view
         })
     }
+    onLoadingChange(){
+        this.setState({
+            loading:Loading.view,
+            mainBlur:true
+        })
+    }
 
     render(){
         return(
             <div {...this.props}>
-                <div id='app-main' style={{filter:this.state.mainBlur ?'blur(10px) brightness(80%)':'none'}}>
+                <div id='app-main' style={{filter:this.state.mainBlur ?'blur(7px) brightness(80%)':'none'}}>
                     {this.props.children}
                 </div>
                 {
@@ -60,6 +69,9 @@ export default class EvUI extends React.Component{
                 }
                 {
                     this.state.confirm ?Confirm.view :''
+                }
+                {
+                    this.state.loading ?Loading.view :'' 
                 }
             </div>
         )

@@ -1,7 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import styled from 'styled-components'
-import {Drawer} from 'ev-ui'
+import {Drawer,Loading} from 'ev-ui'
 
 const Root=styled.div`
     background:#fff;
@@ -63,6 +63,11 @@ export default class Introduction extends React.Component{
         Drawer.show({content:view,position})
     }
 
+    showLoading(){
+        Loading.show()
+        // setTimeout(()=>Loading.hide(),2000)
+    }
+
     render(){
         return(
             <Root {...this.props}>
@@ -78,6 +83,7 @@ export default class Introduction extends React.Component{
                         <div className="comp" onClick={this.showDrawer.bind(this,'right')}>Drawer Right</div>
                         <div className="comp" onClick={this.showDrawer.bind(this,'bottom')}>Drawer Bottom</div>
                         <div className="comp" onClick={this.showDrawer.bind(this,'left')}>Drawer Left</div>
+                        <div className="comp" onClick={this.showLoading.bind(this)}>Loading</div>
                     </div>
                     <span className='tips'>The details introduction will be added later...</span>
                 </div>

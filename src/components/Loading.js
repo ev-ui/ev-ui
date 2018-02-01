@@ -21,7 +21,11 @@ const loading=keyframes`
     }
 `;
 const Root=styled.div`
-    position:absolute;
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,32 +34,61 @@ const Root=styled.div`
         width: 50px;
         height: 50px;
         border-radius: 50%;
+        background:transparent;
         box-shadow: 1px 1px 10px -1px rgba(30, 30, 30, .6);
         animation: 3s ${loading} infinite linear;
         transform-style: preserve-3d;
     }
-`;
-
-export default class Loading extends React.Component{
+    .tips{
+        position:absolute;
+        bottom:100px;
+        font-size:30px;
+        color:white;
+    }
+`
+class Loading extends React.Component{
     
-    state={};
+    state={
+        dots:0
+    }
 
-    componentDidMount(){
+    loopDots(){
         this.setState({
-            winWidth:window.innerWidth,
-            winHeight:window.innerHeight
+            dots:this.state.dots>2 ?0 :this.state.dots+1
         })
     }
-    componentWillReceiveProps(nextProps){
-        if(this.props.visible!==nextProps.visible){
-            this.props.onVisible ?this.props.onVisible(nextProps.visible):''
-        }
+
+    componentDidMount(){
+        setInterval(this.loopDots.bind(this),500)
     }
+
     render(){
         return(
-            <Root style={{width:this.state.winWidth,height:this.state.winHeight,display:this.props.visible?'flex':'none'}}>
+            <Root>
                 <div className="loading-ball"></div>
+                <span className="tips">Loading{".".repeat(this.state.dots)}</span>
             </Root>
         )
     }
 }
+const LoadingOpt={
+    observer:null,
+    view:null,
+    onChange(){
+        if(this.observer && typeof this.observer === 'function'){
+            this.observer()
+        }
+    },
+    subscribe(observer){
+        this.observer=observer
+    },
+    show(onConfirm,onCancel){
+        this.view=<Loading />
+        this.onChange()
+    },
+    hide(){
+        this.view=null
+        this.onChange()
+    }
+}
+export default LoadingOpt
