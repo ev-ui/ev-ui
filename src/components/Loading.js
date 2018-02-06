@@ -59,7 +59,10 @@ class Loading extends React.Component{
     }
 
     componentDidMount(){
-        setInterval(this.loopDots.bind(this),500)
+        this.interval = setInterval(this.loopDots.bind(this),500)
+    }
+    componentWillUnmount(){
+        this.interval && clearInterval(this.interval)
     }
 
     render(){
