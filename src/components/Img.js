@@ -22,22 +22,29 @@ export default class Img extends React.Component{
         this.resize(nextProps.src,nextProps.width || 100,nextProps.height || 100)
     }
     resize(src,width,height){
-        this.img.onload=()=>{
-            const w=this.img.naturalWidth
-            const h=this.img.naturalHeight
-            if(w/width < h/height){
-                this.setState({
-                    width:width,
-                    height:'auto'
-                })
-            }else{
-                this.setState({
-                    width:'auto',
-                    height:height
-                })
-            }
-        }
+		if(this.img && this.img.complete){
+			this.doResize(src,width,height)
+		}else{
+			this.img.onload=()=>{
+				this.doResize(src,width,height)
+			}
+		}
     }
+	doResize(src,width,height){
+		const w=this.img.naturalWidth
+		const h=this.img.naturalHeight
+		if(w/width < h/height){
+			this.setState({
+				width:width,
+				height:'auto'
+			})
+		}else{
+			this.setState({
+				width:'auto',
+				height:height
+			})
+		}
+	}
 
     render(){
         let {width,height,src}=this.props
