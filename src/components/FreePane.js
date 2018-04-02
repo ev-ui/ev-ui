@@ -42,15 +42,15 @@ export default class FreePane extends React.Component{
             })
             this.mx=ex
         }
-        e.preventDefault()
+        // e.preventDefault()
     }
     onResizeEnd(event){
         this.resizing=false
     }
 
     componentDidMount(){
-        document.onmousemove=this.onResize.bind(this)
-        document.onmouseup=this.onResizeEnd.bind(this)
+		document.addEventListener('mousemove',this.onResize.bind(this))
+		document.addEventListener('mouseup',this.onResizeEnd.bind(this))
     }
     
     render(){
