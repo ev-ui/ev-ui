@@ -68,10 +68,10 @@ const Root=styled.div`
         flex-direction:column;
         align-items:center;
         &.swift-in{
-            animation:${swiftIn} .5s ease-out forwards;
+            animation:${swiftIn} .3s ease-out forwards;
         }
         &.swift-out{
-            animation:${swiftOut} .5s ease-out;
+            animation:${swiftOut} .3s ease-out;
         }
         .btn-close{
             position:absolute;

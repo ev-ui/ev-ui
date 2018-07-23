@@ -54,6 +54,11 @@ const cancelOut=keyframes`
 const Root=styled.div`
     z-index:1000;
     user-select:none;
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
     .btn{
         position:fixed;
         top:50%;
@@ -150,10 +155,7 @@ class Confirm extends React.Component{
 
     render() {
         return(
-            <Root 
-            innerRef={root=>this.Root=root} 
-            winWidth={this.state.winWidth}
-            winHeight={this.state.winHeight}>
+            <Root innerRef={root=>this.Root=root} >
                 <div ref={btnConfirm=>this.btnConfirm=btnConfirm} 
                     onClick={this.onConfirm.bind(this)} 
                     style={{display:this.state.canceled?'none':''}}
