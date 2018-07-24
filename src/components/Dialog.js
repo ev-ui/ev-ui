@@ -141,7 +141,7 @@ class Dialog extends React.Component{
             root.classList.remove('swift-in')
             this.content.style.display='flex'
             this.bgLayer && (this.bgLayer.style.display='inherit')
-            const appRoot=document.querySelector('body>div#app>div>div#app-main')
+            const appRoot=document.querySelector('#app-main')
             DomToImage.toPng(appRoot,{quality:0.1})
                 .then(url=>{
                     this.setState({bgUrl:url})
