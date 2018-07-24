@@ -94,6 +94,15 @@ const Root=styled.div`
             justify-content:center;
         }
     }
+    &.bg-blur{
+        .dialog-root{
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, .6);
+            @supports not (-webkit-backdrop-filter:blur(10px)){
+                background: rgba(255, 255, 255, .95);
+            }
+        }
+    }
 `;
 const BgLayer=styled.div`
     background-image:${props=>props.bgUrl?'url('+props.bgUrl+')':''};
@@ -131,7 +140,7 @@ class Dialog extends React.Component{
              winHeight:window.innerHeight
          })
 
-         this.renderBg()
+        //  this.renderBg()
      }
 
      renderBg(){
@@ -158,10 +167,10 @@ class Dialog extends React.Component{
      }
 
      onClose(){
-         this.setState({visible:false})
-         setTimeout(()=>{
+        this.setState({visible:false})
+        this.Root.addEventListener('animationend',()=>{
             DialogOpt.hide(this.props.dkey)
-         },500)
+        })
      }
 
      render(){
@@ -172,9 +181,9 @@ class Dialog extends React.Component{
              mainBlur:null,
              bgBlur:null
         }
-         const {visible,bgUrl,bgPositionX,bgPositionY,bgWidth,bgHeight,bgLeft,bgTop}=this.state
+         const {visible}=this.state
          return(
-             <Root className='dialog-wrapper'
+             <Root className={'dialog-wrapper'+(bgBlur?' bg-blur' :'')}
                 winWidth={this.state.winWidth} winHeight={this.state.winHeight}
                 style={{display:visible?'inherit':'',width:this.state.winWidth,height:this.state.winHeight}}>
                 <div ref={root=>this.Root=root}
@@ -183,12 +192,6 @@ class Dialog extends React.Component{
                     <div ref={ct=>this.content=ct} 
                         className="dialog-content" 
                         style={{display:visible?'flex':'none',width:'100%',flexGrow:1}}>
-                        {bgBlur?
-                            <BgLayer innerRef={bgLayer=>this.bgLayer=bgLayer} style={{display:visible?'none':'none'}} bgUrl={bgUrl} bgPositionX={bgPositionX} bgPositionY={bgPositionY} 
-                                bgWidth={bgWidth} bgHeight={bgHeight}
-                                bgLeft={bgLeft} bgTop={bgTop}/>
-                            :''
-                        }
                         <button className="btn-close" onClick={this.onClose.bind(this)}>&times;</button>
                         {
                             content?
