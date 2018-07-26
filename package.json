@@ -1,6 +1,6 @@
 {
   "name": "ev-ui",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "An ui library,some awesome components.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

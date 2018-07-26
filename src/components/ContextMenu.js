@@ -129,7 +129,7 @@ class ContextMenu extends React.Component{
         setTimeout(()=>{
             this.Root.classList.remove('swift-out');
             ContextMenuOpt.hide();
-        },499)
+        },299)
     }
     componentDidMount(){
         const Root=this.Root
@@ -259,8 +259,15 @@ const ContextMenuOpt = {
         this.observer=observer 
     },
     show({menu,left,top}){
-        this.view=<ContextMenu menu={menu.mapMenuToProps()} left={left} top={top}/>
-        this.onChange()
+        if(this.view){
+            setTimeout(()=>{
+                this.view=<ContextMenu menu={menu.mapMenuToProps()} left={left} top={top}/>
+                this.onChange()
+            },300)
+        }else{
+            this.view=<ContextMenu menu={menu.mapMenuToProps()} left={left} top={top}/>
+            this.onChange()
+        }
     },
     hide(){
         this.view=null
